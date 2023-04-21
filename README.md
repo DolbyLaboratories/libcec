@@ -1,36 +1,38 @@
-# dlb_lip
+![Pulse-Eight logo](https://pulseeight.files.wordpress.com/2016/02/pulse-eight-logo-white-on-green.png?w=200)
 
-The Latency Indication Protocol (LIP)
+# About
+This library provides support for Pulse-Eight's USB-CEC adapter and other CEC capable hardware, like the Raspberry Pi.
 
-## Description
+A list of frequently asked questions can be found on [libCEC's FAQ page] (http://libcec.pulse-eight.com/faq).
 
-The Latency Indication Protocol (LIP) was developed as a test kit by Dolby Laboratories Inc. in response
-to the lack of a capable HDMI signaling solution for A/V latency. The core idea is that LIP provides
-full transparency about the audio and video latency of all devices in an HDMI setup and thereby allows
-to apply necessary alignment at the source, where video is still compressed and thereby less costly to buffer.
+.Net client applications, previously part of this repository, have been moved to [this repository](https://github.com/Pulse-Eight/cec-dotnet).
 
-The latency indication protocol is an extension of the Consumer Electronics Control (CEC) protocol
-designed for improved audio/video (A/V) synchronization when the audio and video content is
-decoded and rendered on different devices interconnected via HDMI.
+# Supported platforms
 
-A source device using LIP that has received information about downstream device latencies can optimally
-compensate the difference and ensure a proper A/V synchronization at the rendering points.
+## Linux & BSD
+See [docs/README.linux.md](docs/README.linux.md).
 
-The functionality of the Latency Indication Protocol includes querying for the support of the protocol,
-sending information about the audio and video latency values of sink devices, and providing dynamic
-updates to the source device on changes in the cluster or processing mode of a sink device.
-The Latency Indication Protocol is designed for specific device setups.
+## Apple OS X
+See [docs/README.osx.md](docs/README.osx.md).
 
-The following scenarios are supported:
-[1] TV audio output connected to an audio system via ARC or eARC
-[2] Source device connected directly to a TV via HDMI
-[3] TV as the hub, connecting to a source device via HDMI, as well as to an audio system via ARC or eARC
+## Microsoft Windows
+See [docs/README.windows.md](docs/README.windows.md).
 
+# Supported hardware
+* [Pulse-Eight USB-CEC Adapter](https://www.pulse-eight.com/p/104/usb-hdmi-cec-adapter)
+* [Pulse-Eight Intel NUC CEC Adapter](https://www.pulse-eight.com/p/154/intel-nuc-hdmi-cec-adapter)
+* [Raspberry Pi](https://www.raspberrypi.org/)
+* Some Exynos SoCs
+* NXP TDA995x
+* Odroid C2 (Amlogic S905)
 
-## Usage
+# Developers
+See [docs/README.developers.md](docs/README.developers.md).
 
-To use the dlb_lip, the dlb_liptool and libcec projects are required.
+# Vendor specific notes
 
-## License
+## Panasonic
+* On Panasonic to enable media control buttons on bottom of the remote, you may have to change the operation mode. To change it, press bottom Power-button, keep it pressed, and press 7 3 Stop. After releasing Power-button, Play, Pause, etc should work in XBMC.
 
-The dlb_lip project is distributed under the 3-Clause BSD License.
+## Raspberry Pi
+* If your TV cannot detect the Raspberry Pi's CEC, or if the the Pi can't detect the TV, try adding the following line in `/boot/config.txt` and reboot the Pi: `hdmi_force_hotplug=1`
